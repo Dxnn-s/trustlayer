@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Trusted Circle</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800;900&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#4edea3",
+              "inverse-surface": "#27313f",
+              "surface-container-highest": "#d9e3f6",
+              "on-tertiary-fixed-variant": "#842225",
+              "on-error": "#ffffff",
+              "outline": "#6c7a71",
+              "tertiary-container": "#fc7c78",
+              "tertiary": "#a43a3a",
+              "primary": "#006c49",
+              "surface-variant": "#d9e3f6",
+              "primary-container": "#10b981",
+              "tertiary-fixed": "#ffdad7",
+              "on-error-container": "#93000a",
+              "on-tertiary-container": "#711419",
+              "primary-fixed": "#6ffbbe",
+              "secondary": "#376850",
+              "on-primary-fixed-variant": "#005236",
+              "on-tertiary": "#ffffff",
+              "inverse-primary": "#4edea3",
+              "on-secondary-fixed": "#002113",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#1e4f3a",
+              "on-primary-container": "#00422b",
+              "surface-dim": "#d0dbed",
+              "on-tertiary-fixed": "#410005",
+              "on-surface": "#121c2a",
+              "secondary-fixed": "#baeed1",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container-low": "#eff4ff",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#ffb3af",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#e6eeff",
+              "on-surface-variant": "#3c4a42",
+              "background": "#f8f9ff",
+              "outline-variant": "#bbcabf",
+              "on-secondary-container": "#3c6c54",
+              "surface-tint": "#006c49",
+              "surface": "#f8f9ff",
+              "secondary-fixed-dim": "#9ed2b5",
+              "secondary-container": "#b7ebce",
+              "on-background": "#121c2a",
+              "surface-bright": "#f8f9ff",
+              "on-primary-fixed": "#002113",
+              "surface-container-high": "#dee9fc",
+              "inverse-on-surface": "#eaf1ff"
+            },
+            fontFamily: {
+              "headline": ["Lexend"],
+              "body": ["Public Sans"],
+              "label": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      body { font-family: 'Public Sans', sans-serif; min-height: max(884px, 100dvh); }
+      h1, h2, h3 { font-family: 'Lexend', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<header class="bg-[#f8f9ff] flex items-center justify-between px-6 py-4 w-full top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="shield">shield</span>
+<span class="text-primary font-['Lexend'] font-bold text-lg tracking-tight">TrustLayer</span>
+</div>
+<div class="hidden md:flex gap-6">
+<span class="text-on-surface-variant font-label font-bold text-sm cursor-pointer hover:text-primary transition-colors">Dashboard</span>
+<span class="text-primary font-label font-bold text-sm cursor-pointer">Circle</span>
+<span class="text-on-surface-variant font-label font-bold text-sm cursor-pointer hover:text-primary transition-colors">History</span>
+</div>
+</header>
+<main class="flex-1 max-w-2xl mx-auto w-full px-6 pt-8 pb-32">
+<div class="flex items-center justify-between mb-8">
+<h1 class="text-3xl font-black tracking-tight text-on-surface">My trusted circle</h1>
+<div class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-headline font-bold text-sm">4/10</div>
+</div>
+<p class="text-on-surface-variant mb-10 leading-relaxed font-body">
+  Manage the people you trust to verify your identity. Only members of your circle can vouch for your secure transactions.
+</p>
+<div class="space-y-0 bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="flex items-center justify-between p-5 transition-colors duration-200 hover:bg-surface-container-low border-b border-surface-container">
+<div class="flex items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div>
+<div class="font-headline font-bold text-on-surface">Almaz</div>
+<div class="font-body text-sm text-on-surface-variant tracking-wider">+251922000000</div>
+</div>
+</div>
+<button aria-label="Remove Almaz" class="text-outline-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-5 transition-colors duration-200 hover:bg-surface-container-low border-b border-surface-container">
+<div class="flex items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div>
+<div class="font-headline font-bold text-on-surface">Dawit</div>
+<div class="font-body text-sm text-on-surface-variant tracking-wider">+251933000000</div>
+</div>
+</div>
+<button aria-label="Remove Dawit" class="text-outline-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-5 transition-colors duration-200 hover:bg-surface-container-low border-b border-surface-container">
+<div class="flex items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div>
+<div class="font-headline font-bold text-on-surface">Meron</div>
+<div class="font-body text-sm text-on-surface-variant tracking-wider">+251911000000</div>
+</div>
+</div>
+<button aria-label="Remove Meron" class="text-outline-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-5 transition-colors duration-200 hover:bg-surface-container-low">
+<div class="flex items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div>
+<div class="font-headline font-bold text-on-surface">Hana</div>
+<div class="font-body text-sm text-on-surface-variant tracking-wider">+251915000000</div>
+</div>
+</div>
+<button aria-label="Remove Hana" class="text-outline-variant hover:text-error transition-colors p-2">
+<span class="material-symbols-outlined text-xl" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<div class="mt-12 flex justify-center">
+<button class="bg-primary-container text-on-primary-container font-headline font-bold py-4 px-10 rounded-full flex items-center gap-3 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined font-black" data-icon="add">add</span>
+<span>Add contact</span>
+</button>
+</div>
+</main>
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white border-t-4 border-[#eff4ff] z-50">
+<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
+<span class="material-symbols-outlined text-2xl" data-icon="verified_user">verified_user</span>
+<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Verify</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#10b981] text-white rounded-xl p-2 scale-105">
+<span class="material-symbols-outlined text-2xl" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Circle</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
+<span class="material-symbols-outlined text-2xl" data-icon="history">history</span>
+<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
+<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
+<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Settings</span>
+</div>
+</nav>
+</body></html>

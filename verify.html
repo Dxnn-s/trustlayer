@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrustLayer - Identity Verification</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#002113",
+              "on-tertiary-fixed-variant": "#842225",
+              "surface-variant": "#d9e3f6",
+              "surface-container": "#e6eeff",
+              "on-surface": "#121c2a",
+              "on-primary-fixed-variant": "#005236",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#eff4ff",
+              "on-primary-fixed": "#002113",
+              "tertiary-fixed": "#ffdad7",
+              "background": "#f8f9ff",
+              "on-secondary-container": "#3c6c54",
+              "error": "#ba1a1a",
+              "primary-fixed-dim": "#4edea3",
+              "outline": "#6c7a71",
+              "on-tertiary-fixed": "#410005",
+              "outline-variant": "#bbcabf",
+              "primary-fixed": "#6ffbbe",
+              "primary-container": "#10b981",
+              "surface-bright": "#f8f9ff",
+              "tertiary-container": "#fc7c78",
+              "surface-container-highest": "#d9e3f6",
+              "secondary": "#376850",
+              "secondary-fixed-dim": "#9ed2b5",
+              "inverse-primary": "#4edea3",
+              "on-surface-variant": "#3c4a42",
+              "on-secondary-fixed-variant": "#1e4f3a",
+              "surface": "#f8f9ff",
+              "on-primary-container": "#00422b",
+              "secondary-container": "#b7ebce",
+              "surface-tint": "#006c49",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#eaf1ff",
+              "tertiary-fixed-dim": "#ffb3af",
+              "secondary-fixed": "#baeed1",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-primary": "#ffffff",
+              "on-background": "#121c2a",
+              "surface-container-high": "#dee9fc",
+              "tertiary": "#a43a3a",
+              "inverse-surface": "#27313f",
+              "on-secondary": "#ffffff",
+              "primary": "#006c49",
+              "surface-dim": "#d0dbed",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#711419"
+            },
+            fontFamily: {
+              "headline": ["Lexend"],
+              "body": ["Public Sans"],
+              "label": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; line-height: 1; }
+    body { font-family: 'Public Sans', sans-serif; -webkit-font-smoothing: antialiased; min-height: max(884px, 100dvh); }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<header class="w-full top-0 sticky bg-[#f8f9ff] dark:bg-slate-950 flex items-center justify-between px-6 py-4 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#006c49] dark:text-[#10b981] text-2xl" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-lexend font-bold text-xl text-[#006c49] dark:text-[#10b981] tracking-tight">TrustLayer</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#121c2a] dark:text-slate-400 hover:bg-[#eff4ff] p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col px-6 pt-8 pb-32">
+<div class="mb-10">
+<h1 class="font-headline text-3xl font-bold leading-tight mb-2">Verify Identity</h1>
+<p class="font-body text-on-surface-variant leading-relaxed">Secure verification for the Ethiopian digital economy. Input the phone number to check registration status.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-8 border-none">
+<div class="flex border-b border-outline-variant mb-6">
+<button class="flex-1 py-3 text-sm font-bold font-headline border-b-2 border-primary text-primary transition-colors" id="tab-phone">Phone Number</button>
+<button class="flex-1 py-3 text-sm font-bold font-headline border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-colors" id="tab-email">Email Address</button>
+</div>
+<div class="space-y-6">
+<div id="phone-input-group">
+<label class="font-label font-bold text-xs uppercase tracking-widest text-on-surface-variant block mb-3">Phone Number</label>
+<div class="flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 ring-transparent focus-within:ring-primary transition-all">
+<div class="flex items-center gap-2 border-r border-outline-variant pr-4 mr-4">
+<img alt="Ethiopia Flag" class="w-6 h-4 rounded-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9jcTp3AQpecZAdL5BiFVbkIdDJEdTq7WfaTLKr3F7aZnQf3r2KjrnpQ5EAUyIixJdyXSUEh1rO32ZZBh1W2YoqO-cd4M_Edy_KNfprALqpogGwbX_Tc5UwI0AQxgUo-GYEaJTTdOgJjS5-3Jms6yOu4VdGPNzuzhzBXGhKeI5lXgWaSGyrVB4l554Q3vkXAXJFfMfiEyXrcgS4PgfpD5nvq8gfQQtVxKQT5o6scDzmCVqRP94SNmL_-2-tkenTIFBAIx34Rg0xbA"/>
+<span class="font-headline font-bold text-lg text-on-surface">+251</span>
+</div>
+<input class="bg-transparent border-none focus:ring-0 w-full font-headline font-bold text-xl p-0 placeholder:text-outline-variant" maxlength="9" placeholder="912 345 678" type="tel" value=""/>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mt-3">Use the 9-digit mobile number registered with Ethio Telecom or Safaricom.</p>
+</div>
+<div class="hidden" id="email-input-group">
+<label class="font-label font-bold text-xs uppercase tracking-widest text-on-surface-variant block mb-3">Email Address</label>
+<div class="flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 ring-transparent focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-3" data-icon="mail">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-headline font-bold text-lg p-0 placeholder:text-outline-variant" placeholder="name@example.com" type="email" value=""/>
+</div>
+<p class="text-xs text-on-surface-variant font-medium mt-3">Enter the email address linked to your digital identity profile.</p>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container h-14 w-full rounded-xl flex items-center justify-center gap-2 font-headline font-bold text-lg active:scale-95 transition-transform hover:opacity-90">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+Check Identity
+</button>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<h3 class="font-headline font-bold text-sm">Bank Grade</h3>
+<p class="text-xs text-on-surface-variant">Encrypted end-to-end data processing.</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="speed" style="font-variation-settings: 'FILL' 1;">speed</span>
+<h3 class="font-headline font-bold text-sm">Instant</h3>
+<p class="text-xs text-on-surface-variant">Real-time sync with national registries.</p>
+</div>
+</div>
+<div class="mt-auto pt-10 pb-6 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline font-bold text-sm">Offline mode</span>
+<span class="text-xs text-on-surface-variant">Verify using SMS protocols</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-slate-900">
+<a class="flex flex-col items-center justify-center bg-[#10b981] text-white rounded-xl px-4 py-1 transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-lexend text-[12px] font-medium">Verify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1f2937] dark:text-slate-400 px-4 py-1 hover:opacity-80 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-lexend text-[12px] font-medium">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1f2937] dark:text-slate-400 px-4 py-1 hover:opacity-80 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-lexend text-[12px] font-medium">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1f2937] dark:text-slate-400 px-4 py-1 hover:opacity-80 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-lexend text-[12px] font-medium">Profile</span>
+</a>
+</nav>
+<script>
+  document.getElementById('tab-phone').addEventListener('click', function() {
+    document.getElementById('phone-input-group').classList.remove('hidden');
+    document.getElementById('email-input-group').classList.add('hidden');
+    this.classList.add('border-primary', 'text-primary');
+    document.getElementById('tab-email').classList.remove('border-primary', 'text-primary');
+  });
+  document.getElementById('tab-email').addEventListener('click', function() {
+    document.getElementById('email-input-group').classList.remove('hidden');
+    document.getElementById('phone-input-group').classList.add('hidden');
+    this.classList.add('border-primary', 'text-primary');
+    document.getElementById('tab-phone').classList.remove('border-primary', 'text-primary');
+  });
+</script>
+</body></html>
