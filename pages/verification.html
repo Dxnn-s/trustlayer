@@ -150,6 +150,29 @@
 </nav>
 <script>
 (function () {
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:0.55rem 1.1rem;border-radius:0.5rem;font-size:0.82rem;font-family:Lexend,sans-serif;z-index:9999;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none';
+    document.body.appendChild(t);
+    setTimeout(function () { t.style.opacity = '1'; }, 10);
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
+  }
+
+  // Bottom nav
+  document.querySelectorAll('nav a').forEach(function (a) {
+    var label = a.querySelector('span:last-child');
+    if (!label) return;
+    switch (label.textContent.trim().toLowerCase()) {
+      case 'home': a.href = '/pages/verify.html'; break;
+      default:
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          toast(label.textContent.trim() + ' — coming soon');
+        });
+    }
+  });
+
   var p = new URLSearchParams(window.location.search);
   var name    = p.get('name')    || 'Kebede Alemu';
   var region  = p.get('region')  || 'Oromia';
@@ -196,7 +219,9 @@
   var audioBtn = document.querySelector('button.w-24.h-24');
   if (audioBtn) {
     audioBtn.addEventListener('click', function () {
-      new Audio('/audio/verified-am.mp3').play().catch(function(){});
+      new Audio('/audio/verified-am.mp3').play().catch(function () {
+        toast('Audio file not yet available');
+      });
     });
   }
 

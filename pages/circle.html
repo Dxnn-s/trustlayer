@@ -144,6 +144,28 @@
 </nav>
 <script>
 (function () {
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#121c2a;color:#fff;padding:0.55rem 1.1rem;border-radius:0.5rem;font-size:0.82rem;font-family:Lexend,sans-serif;z-index:9999;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none';
+    document.body.appendChild(t);
+    setTimeout(function () { t.style.opacity = '1'; }, 10);
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
+  }
+
+  // Bottom nav (styled divs)
+  var navItems = document.querySelectorAll('nav > div');
+  navItems.forEach(function (item) {
+    var label = item.querySelector('span:last-child');
+    if (!label) return;
+    item.style.cursor = 'pointer';
+    switch (label.textContent.trim().toLowerCase()) {
+      case 'verify': item.addEventListener('click', function () { window.location.href = '/pages/verify.html'; }); break;
+      case 'circle': break; // already here
+      default: item.addEventListener('click', function () { toast(label.textContent.trim() + ' — coming soon'); }); break;
+    }
+  });
+
   var USER_ID = '+251912345678';
   var list      = document.getElementById('contacts-list');
   var countBadge= document.getElementById('circle-count');
@@ -214,11 +236,30 @@
     addBtnWrap.style.display = 'flex';
   });
 
+  // Only allow + and digits in phone field
+  addPhone.addEventListener('input', function () {
+    this.value = this.value.replace(/[^\d+]/g, '');
+    addError.style.display = 'none';
+  });
+
   confirmBtn.addEventListener('click', async function () {
     addError.style.display = 'none';
     var phone = addPhone.value.trim();
     var name  = addName.value.trim();
-    if (!phone) { addError.textContent = 'Phone is required'; addError.style.display = 'block'; return; }
+
+    if (!phone) {
+      addError.textContent = 'Phone number is required.';
+      addError.style.display = 'block';
+      addPhone.focus();
+      return;
+    }
+    var digits = phone.replace(/^\+/, '');
+    if (!/^\d{9,12}$/.test(digits)) {
+      addError.textContent = 'Enter a valid phone number (e.g. +251911223344).';
+      addError.style.display = 'block';
+      addPhone.focus();
+      return;
+    }
 
     confirmBtn.textContent = 'Adding...';
     confirmBtn.disabled = true;

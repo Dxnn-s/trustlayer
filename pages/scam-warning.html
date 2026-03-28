@@ -190,6 +190,41 @@ Dismiss
 </nav>
 <script>
 (function () {
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1b1b1e;color:#fff;padding:0.55rem 1.1rem;border-radius:0.5rem;font-size:0.82rem;font-family:Lexend,sans-serif;z-index:9999;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none';
+    document.body.appendChild(t);
+    setTimeout(function () { t.style.opacity = '1'; }, 10);
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
+  }
+
+  // Bottom nav (styled divs, not anchors)
+  var navItems = document.querySelectorAll('nav > div');
+  navItems.forEach(function (item) {
+    var label = item.querySelector('span:last-child');
+    if (!label) return;
+    switch (label.textContent.trim().toLowerCase()) {
+      case 'verify':  item.style.cursor = 'pointer'; item.addEventListener('click', function () { window.location.href = '/pages/verify.html'; }); break;
+      case 'circle':  item.style.cursor = 'pointer'; item.addEventListener('click', function () { window.location.href = '/pages/circle.html'; }); break;
+      default:
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function () { toast(label.textContent.trim() + ' — coming soon'); });
+    }
+  });
+
+  // Header icons
+  document.querySelectorAll('header span.material-symbols-outlined').forEach(function (icon) {
+    icon.style.cursor = 'pointer';
+    icon.addEventListener('click', function () { toast('Coming soon'); });
+  });
+
+  // Empty textarea validation
+  var msgInput  = document.getElementById('msg-input');
+  msgInput.addEventListener('input', function () {
+    document.getElementById('check-msg-btn').disabled = !this.value.trim();
+  });
+
   var modal     = document.getElementById('scam-modal');
   var checkBtn  = document.getElementById('check-msg-btn');
   var msgInput  = document.getElementById('msg-input');

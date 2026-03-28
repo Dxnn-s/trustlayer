@@ -180,13 +180,90 @@ Check Identity
 </script>
 <script>
 (function () {
-  var btn = document.querySelector('button.bg-primary-container');
+  // ── Toast ──────────────────────────────────────────────────────────────────
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#121c2a;color:#fff;padding:0.55rem 1.1rem;border-radius:0.5rem;font-size:0.82rem;font-family:Lexend,sans-serif;z-index:9999;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none';
+    document.body.appendChild(t);
+    setTimeout(function () { t.style.opacity = '1'; }, 10);
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
+  }
+
+  // ── Bottom nav ────────────────────────────────────────────────────────────
+  document.querySelectorAll('nav a').forEach(function (a) {
+    var label = a.querySelector('span:last-child');
+    if (!label) return;
+    switch (label.textContent.trim().toLowerCase()) {
+      case 'verify':  a.href = '/pages/verify.html'; break;
+      case 'safety':  a.href = '/pages/scam-warning.html'; break;
+      default:
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          toast(label.textContent.trim() + ' — coming soon');
+        });
+    }
+  });
+
+  // ── Help button ───────────────────────────────────────────────────────────
+  var helpBtn = document.querySelector('header button');
+  if (helpBtn) helpBtn.addEventListener('click', function () {
+    toast('Enter a 9-digit Ethio Telecom number or an agent code (TBA-XXXX)');
+  });
+
+  // ── Inline error helper ───────────────────────────────────────────────────
+  function makeError(afterEl) {
+    var el = document.createElement('p');
+    el.style.cssText = 'color:#ba1a1a;font-size:0.75rem;font-weight:600;margin-top:0.4rem;display:none;font-family:Public Sans,sans-serif';
+    if (afterEl) afterEl.after(el);
+    return el;
+  }
+  var phoneError = makeError(document.querySelector('#phone-input-group p.text-xs'));
+  var emailError = makeError(document.querySelector('#email-input-group p.text-xs'));
+
+  // ── Phone — digits only ───────────────────────────────────────────────────
   var phoneInput = document.querySelector('#phone-input-group input[type="tel"]');
   var emailInput = document.querySelector('#email-input-group input[type="email"]');
+  phoneInput.addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 9);
+    phoneError.style.display = 'none';
+  });
+  emailInput.addEventListener('input', function () { emailError.style.display = 'none'; });
+
+  // ── Check Identity button ─────────────────────────────────────────────────
+  var btn = document.querySelector('button.bg-primary-container');
   if (!btn) return;
 
   btn.addEventListener('click', async function () {
+    phoneError.style.display = 'none';
+    emailError.style.display = 'none';
+
     var phoneHidden = document.getElementById('phone-input-group').classList.contains('hidden');
+
+    if (!phoneHidden) {
+      var digits = phoneInput.value.replace(/\s/g, '');
+      if (!digits) {
+        phoneError.textContent = 'Please enter a phone number.';
+        phoneError.style.display = 'block';
+        phoneInput.focus();
+        return;
+      }
+      if (!/^\d{9}$/.test(digits)) {
+        phoneError.textContent = 'Must be exactly 9 digits after +251 (e.g. 911223344).';
+        phoneError.style.display = 'block';
+        phoneInput.focus();
+        return;
+      }
+    } else {
+      var emailVal = emailInput.value.trim();
+      if (!emailVal) {
+        emailError.textContent = 'Please enter an email address or agent code.';
+        emailError.style.display = 'block';
+        emailInput.focus();
+        return;
+      }
+    }
+
     var payload = phoneHidden
       ? { agentCode: emailInput.value.trim() }
       : { phone: '+251' + phoneInput.value.replace(/\s/g, '') };
@@ -205,19 +282,15 @@ Check Identity
       if (data.found && (data.badge === 'green' || data.badge === 'yellow')) {
         var a = data.agent;
         var q = new URLSearchParams({
-          name: a.name || '',
-          region: a.region || '',
-          kebele: a.kebele || '',
-          id: a.id || '',
-          score: a.trust_score || '',
-          warning: data.warning || ''
+          name: a.name || '', region: a.region || '', kebele: a.kebele || '',
+          id: a.id || '', score: a.trust_score || '', warning: data.warning || ''
         });
         window.location.href = '/pages/verification.html?' + q;
       } else {
         window.location.href = '/pages/not-verified.html';
       }
     } catch (e) {
-      alert('Connection error. Is the server running on port 3000?');
+      toast('Connection error — is the server running on port 3000?');
       btn.disabled = false;
       btn.innerHTML = '<span class="material-symbols-outlined">verified</span> Check Identity';
     }

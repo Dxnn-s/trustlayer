@@ -145,10 +145,27 @@ Check another person
 </footer>
 <script>
 (function () {
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:0.55rem 1.1rem;border-radius:0.5rem;font-size:0.82rem;font-family:Lexend,sans-serif;z-index:9999;opacity:0;transition:opacity 0.2s;white-space:nowrap;pointer-events:none';
+    document.body.appendChild(t);
+    setTimeout(function () { t.style.opacity = '1'; }, 10);
+    setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
+  }
+
+  // Header notifications button
+  var notifBtn = document.querySelector('header button');
+  if (notifBtn) notifBtn.addEventListener('click', function () {
+    toast('No new notifications');
+  });
+
   // Audio — "Tap to hear warning"
   var audioBtn = document.querySelector('button.glass-effect');
   if (audioBtn) audioBtn.addEventListener('click', function () {
-    new Audio('/audio/warning-am.mp3').play().catch(function(){});
+    new Audio('/audio/warning-am.mp3').play().catch(function () {
+      toast('Audio file not yet available');
+    });
   });
 
   // "Call trusted contact"
