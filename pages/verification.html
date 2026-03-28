@@ -131,19 +131,23 @@
 </button>
 </main>
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-white dark:bg-gray-900">
-<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-lexend text-[10px] font-medium mt-1">Home</span>
+<a class="flex flex-col items-center justify-center text-gray-500 p-2 hover:bg-gray-100 transition-all active:scale-90" href="/pages/verify.html">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Verify</span>
 </a>
-<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span class="font-lexend text-[10px] font-medium mt-1">Payments</span>
+<a class="flex flex-col items-center justify-center text-gray-500 p-2 hover:bg-gray-100 transition-all active:scale-90" href="/pages/circle.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Circle</span>
 </a>
-<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-gray-500 p-2 hover:bg-gray-100 transition-all active:scale-90" href="/pages/history.html">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 <span class="font-lexend text-[10px] font-medium mt-1">History</span>
 </a>
-<a class="flex flex-col items-center justify-center bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-100 rounded-xl p-2 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<a class="flex flex-col items-center justify-center text-gray-500 p-2 hover:bg-gray-100 transition-all active:scale-90" href="/pages/scam-warning.html">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-100 text-emerald-800 rounded-xl p-2 transition-all active:scale-90" href="/pages/profile.html">
 <span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
 <span class="font-lexend text-[10px] font-medium mt-1">Profile</span>
 </a>
@@ -158,20 +162,6 @@
     setTimeout(function () { t.style.opacity = '1'; }, 10);
     setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
   }
-
-  // Bottom nav
-  document.querySelectorAll('nav a').forEach(function (a) {
-    var label = a.querySelector('span:last-child');
-    if (!label) return;
-    switch (label.textContent.trim().toLowerCase()) {
-      case 'home': a.href = '/pages/verify.html'; break;
-      default:
-        a.addEventListener('click', function (e) {
-          e.preventDefault();
-          toast(label.textContent.trim() + ' — coming soon');
-        });
-    }
-  });
 
   var p = new URLSearchParams(window.location.search);
   var name    = p.get('name')    || 'Kebede Alemu';

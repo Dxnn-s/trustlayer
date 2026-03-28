@@ -157,7 +157,7 @@ Check another person
   // Header notifications button
   var notifBtn = document.querySelector('header button');
   if (notifBtn) notifBtn.addEventListener('click', function () {
-    toast('No new notifications');
+    window.location.href = '/pages/notifications.html';
   });
 
   // Audio — "Tap to hear warning"

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notifications – TrustLayer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800;900&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#006c49", "primary-container": "#10b981",
+          "on-primary-container": "#00422b", "on-primary": "#ffffff",
+          "surface": "#f8f9ff", "surface-container-lowest": "#ffffff",
+          "surface-container-low": "#eff4ff", "surface-container": "#e6eeff",
+          "surface-container-high": "#dee9fc",
+          "on-surface": "#121c2a", "on-surface-variant": "#3c4a42",
+          "outline": "#6c7a71", "outline-variant": "#bbcabf",
+          "error": "#ba1a1a", "background": "#f8f9ff",
+        },
+        fontFamily: { "headline": ["Lexend"], "body": ["Public Sans"], "label": ["Public Sans"] },
+        borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { font-family: 'Public Sans', sans-serif; min-height: max(884px, 100dvh); }
+  h1, h2, h3 { font-family: 'Lexend', sans-serif; }
+</style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+
+<header class="bg-[#f8f9ff] sticky top-0 z-40 flex items-center gap-3 px-6 py-4">
+  <button onclick="history.back()" class="p-2 rounded-full hover:bg-surface-container transition-colors">
+    <span class="material-symbols-outlined">arrow_back</span>
+  </button>
+  <div class="flex items-center gap-3 flex-1">
+    <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1">shield</span>
+    <span class="font-headline font-bold text-xl text-primary tracking-tight">TrustLayer</span>
+  </div>
+</header>
+
+<main class="flex-1 max-w-2xl mx-auto w-full px-6 pt-8 pb-32">
+  <div class="mb-8">
+    <h1 class="font-headline text-3xl font-bold mb-2">Notifications</h1>
+    <p class="text-on-surface-variant font-body text-sm">Alerts for suspicious or unregistered agents you've checked.</p>
+  </div>
+
+  <div id="notif-list" class="space-y-3">
+    <p class="text-on-surface-variant text-sm p-4">Loading...</p>
+  </div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white border-t border-outline-variant">
+  <a href="/pages/verify.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">verified_user</span>
+    <span class="font-headline text-[12px] font-medium">Verify</span>
+  </a>
+  <a href="/pages/circle.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-headline text-[12px] font-medium">Circle</span>
+  </a>
+  <a href="/pages/history.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">history</span>
+    <span class="font-headline text-[12px] font-medium">History</span>
+  </a>
+  <a href="/pages/scam-warning.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-headline text-[12px] font-medium">Safety</span>
+  </a>
+  <a href="/pages/profile.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">person</span>
+    <span class="font-headline text-[12px] font-medium">Profile</span>
+  </a>
+</nav>
+
+<script>
+(function () {
+  var list = document.getElementById('notif-list');
+
+  function formatTime(iso) {
+    var d = new Date(iso);
+    return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  async function loadNotifications() {
+    try {
+      var res = await fetch('/api/notifications');
+      var data = await res.json();
+      var notifs = data.notifications || [];
+
+      if (!notifs.length) {
+        list.innerHTML = '<div class="text-center py-16 text-on-surface-variant"><span class="material-symbols-outlined text-5xl block mb-3" style="font-variation-settings:\'FILL\' 1">notifications_off</span><p class="font-body">No alerts. All recent checks were verified agents.</p></div>';
+        return;
+      }
+
+      list.innerHTML = notifs.map(function (n) {
+        var isRed = n.badge === 'red';
+        var bg     = isRed ? '#fee2e2' : '#fef9c3';
+        var border = isRed ? '#fca5a5' : '#fde047';
+        var color  = isRed ? '#991b1b' : '#854d0e';
+        var icon   = isRed ? 'dangerous'  : 'warning';
+        return '<div class="rounded-xl p-4 flex items-start gap-4" style="background:' + bg + ';border:1px solid ' + border + '">' +
+          '<span class="material-symbols-outlined text-2xl mt-0.5" style="color:' + color + ';font-variation-settings:\'FILL\' 1">' + icon + '</span>' +
+          '<div class="flex-1">' +
+            '<div class="font-headline font-bold text-sm text-on-surface">' + n.message + '</div>' +
+            '<div class="text-xs text-on-surface-variant mt-1">' + formatTime(n.timestamp) + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    } catch (e) {
+      list.innerHTML = '<p class="text-on-surface-variant text-sm p-4">Could not load notifications. Is the server running?</p>';
+    }
+  }
+
+  loadNotifications();
+})();
+</script>
+</body>
+</html>

@@ -125,22 +125,22 @@
 </div>
 </main>
 <nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white border-t-4 border-[#eff4ff] z-50">
-<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
+<a href="/pages/verify.html" class="flex flex-col items-center justify-center text-[#121c2a] p-2 hover:opacity-80">
 <span class="material-symbols-outlined text-2xl" data-icon="verified_user">verified_user</span>
 <span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Verify</span>
-</div>
-<div class="flex flex-col items-center justify-center bg-[#10b981] text-white rounded-xl p-2 scale-105">
+</a>
+<a href="/pages/circle.html" class="flex flex-col items-center justify-center bg-[#10b981] text-white rounded-xl p-2 scale-105">
 <span class="material-symbols-outlined text-2xl" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
 <span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Circle</span>
-</div>
-<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
+</a>
+<a href="/pages/history.html" class="flex flex-col items-center justify-center text-[#121c2a] p-2 hover:opacity-80">
 <span class="material-symbols-outlined text-2xl" data-icon="history">history</span>
 <span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">History</span>
-</div>
-<div class="flex flex-col items-center justify-center text-[#121c2a] p-2">
-<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
-<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Settings</span>
-</div>
+</a>
+<a href="/pages/profile.html" class="flex flex-col items-center justify-center text-[#121c2a] p-2 hover:opacity-80">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-['Lexend'] font-bold text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
 </nav>
 <script>
 (function () {
@@ -152,19 +152,6 @@
     setTimeout(function () { t.style.opacity = '1'; }, 10);
     setTimeout(function () { t.style.opacity = '0'; setTimeout(function () { t.remove(); }, 300); }, 2600);
   }
-
-  // Bottom nav (styled divs)
-  var navItems = document.querySelectorAll('nav > div');
-  navItems.forEach(function (item) {
-    var label = item.querySelector('span:last-child');
-    if (!label) return;
-    item.style.cursor = 'pointer';
-    switch (label.textContent.trim().toLowerCase()) {
-      case 'verify': item.addEventListener('click', function () { window.location.href = '/pages/verify.html'; }); break;
-      case 'circle': break; // already here
-      default: item.addEventListener('click', function () { toast(label.textContent.trim() + ' — coming soon'); }); break;
-    }
-  });
 
   var USER_ID = '+251912345678';
   var list      = document.getElementById('contacts-list');
@@ -285,12 +272,6 @@
       confirmBtn.textContent = 'Add';
       confirmBtn.disabled = false;
     }
-  });
-
-  // Nav: verify link
-  var verifyNav = document.querySelector('[data-icon="verified_user"]');
-  if (verifyNav) verifyNav.closest('div').addEventListener('click', function () {
-    window.location.href = '/pages/verify.html';
   });
 
   loadContacts();

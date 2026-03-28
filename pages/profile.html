@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile – TrustLayer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800;900&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#006c49", "primary-container": "#10b981",
+          "on-primary-container": "#00422b", "on-primary": "#ffffff",
+          "secondary": "#376850", "secondary-container": "#b7ebce",
+          "surface": "#f8f9ff", "surface-container-lowest": "#ffffff",
+          "surface-container-low": "#eff4ff", "surface-container": "#e6eeff",
+          "surface-container-high": "#dee9fc", "surface-container-highest": "#d9e3f6",
+          "on-surface": "#121c2a", "on-surface-variant": "#3c4a42",
+          "outline": "#6c7a71", "outline-variant": "#bbcabf",
+          "error": "#ba1a1a", "background": "#f8f9ff",
+        },
+        fontFamily: { "headline": ["Lexend"], "body": ["Public Sans"], "label": ["Public Sans"] },
+        borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { font-family: 'Public Sans', sans-serif; min-height: max(884px, 100dvh); }
+  h1, h2, h3 { font-family: 'Lexend', sans-serif; }
+</style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+
+<header class="bg-[#f8f9ff] sticky top-0 z-40 flex items-center justify-between px-6 py-4">
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1">shield</span>
+    <span class="font-headline font-bold text-xl text-primary tracking-tight">TrustLayer</span>
+  </div>
+  <a href="/pages/notifications.html" class="relative p-2 rounded-full hover:bg-surface-container transition-colors">
+    <span class="material-symbols-outlined">notifications</span>
+    <span id="notif-dot" style="display:none" class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+  </a>
+</header>
+
+<main class="flex-1 max-w-2xl mx-auto w-full px-6 pt-8 pb-32">
+
+  <!-- Avatar + name -->
+  <div class="flex flex-col items-center mb-10">
+    <div class="w-24 h-24 rounded-full bg-primary-container flex items-center justify-center mb-4 shadow-md">
+      <span class="material-symbols-outlined text-5xl text-on-primary-container" style="font-variation-settings:'FILL' 1">person</span>
+    </div>
+    <h1 id="profile-name" class="font-headline text-2xl font-bold">Loading…</h1>
+    <p id="profile-phone" class="text-on-surface-variant font-body text-sm mt-1"></p>
+  </div>
+
+  <!-- Stats row -->
+  <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="bg-surface-container-low rounded-xl p-5 flex flex-col gap-1 items-center text-center">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1">group</span>
+      <span id="stat-circle" class="font-headline font-black text-2xl text-on-surface">—</span>
+      <span class="font-body text-xs text-on-surface-variant">Trusted Contacts</span>
+    </div>
+    <div class="bg-surface-container-low rounded-xl p-5 flex flex-col gap-1 items-center text-center">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1">history</span>
+      <span id="stat-verify" class="font-headline font-black text-2xl text-on-surface">—</span>
+      <span class="font-body text-xs text-on-surface-variant">Verifications Run</span>
+    </div>
+  </div>
+
+  <!-- Quick links -->
+  <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant">
+    <a href="/pages/circle.html" class="flex items-center gap-4 px-5 py-4 hover:bg-surface-container-low transition-colors border-b border-outline-variant">
+      <span class="material-symbols-outlined text-primary">group</span>
+      <span class="font-headline font-bold flex-1">My Trusted Circle</span>
+      <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+    </a>
+    <a href="/pages/history.html" class="flex items-center gap-4 px-5 py-4 hover:bg-surface-container-low transition-colors border-b border-outline-variant">
+      <span class="material-symbols-outlined text-primary">history</span>
+      <span class="font-headline font-bold flex-1">Verification History</span>
+      <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+    </a>
+    <a href="/pages/notifications.html" class="flex items-center gap-4 px-5 py-4 hover:bg-surface-container-low transition-colors border-b border-outline-variant">
+      <span class="material-symbols-outlined text-primary">notifications</span>
+      <span class="font-headline font-bold flex-1">Notifications</span>
+      <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+    </a>
+    <a href="/pages/search.html" class="flex items-center gap-4 px-5 py-4 hover:bg-surface-container-low transition-colors border-b border-outline-variant">
+      <span class="material-symbols-outlined text-primary">search</span>
+      <span class="font-headline font-bold flex-1">Search Agents</span>
+      <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+    </a>
+    <a href="/pages/scam-warning.html" class="flex items-center gap-4 px-5 py-4 hover:bg-surface-container-low transition-colors">
+      <span class="material-symbols-outlined text-primary">security</span>
+      <span class="font-headline font-bold flex-1">Safety &amp; Scam Check</span>
+      <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+    </a>
+  </div>
+
+  <!-- Language badge -->
+  <div id="lang-row" class="mt-6 flex items-center gap-3 bg-surface-container-low rounded-xl px-5 py-4">
+    <span class="material-symbols-outlined text-primary">language</span>
+    <div class="flex-1">
+      <div class="font-headline font-bold text-sm">Preferred Language</div>
+      <div id="lang-label" class="text-on-surface-variant text-xs mt-0.5">—</div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white border-t border-outline-variant">
+  <a href="/pages/verify.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">verified_user</span>
+    <span class="font-headline text-[12px] font-medium">Verify</span>
+  </a>
+  <a href="/pages/circle.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">group</span>
+    <span class="font-headline text-[12px] font-medium">Circle</span>
+  </a>
+  <a href="/pages/history.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">history</span>
+    <span class="font-headline text-[12px] font-medium">History</span>
+  </a>
+  <a href="/pages/scam-warning.html" class="flex flex-col items-center justify-center text-[#1f2937] px-4 py-1 hover:opacity-80">
+    <span class="material-symbols-outlined">security</span>
+    <span class="font-headline text-[12px] font-medium">Safety</span>
+  </a>
+  <a href="/pages/profile.html" class="flex flex-col items-center justify-center bg-[#10b981] text-white rounded-xl px-4 py-1">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">person</span>
+    <span class="font-headline text-[12px] font-medium">Profile</span>
+  </a>
+</nav>
+
+<script>
+(function () {
+  var LANG_NAMES = { 'en': 'English', 'am': 'Amharic (አማርኛ)', 'om': 'Oromiffa (Afaan Oromo)' };
+  var USER_ID = '+251912345678';
+
+  async function loadProfile() {
+    try {
+      var res  = await fetch('/api/profile/' + encodeURIComponent(USER_ID));
+      var data = await res.json();
+
+      document.getElementById('profile-name').textContent  = data.name  || 'Demo User';
+      document.getElementById('profile-phone').textContent = data.id    || USER_ID;
+      document.getElementById('stat-circle').textContent   = data.circleCount ?? '—';
+      document.getElementById('stat-verify').textContent   = data.verifyCount  ?? '—';
+      document.getElementById('lang-label').textContent    = LANG_NAMES[data.language] || data.language || 'Unknown';
+    } catch (e) {
+      document.getElementById('profile-name').textContent = 'Demo User';
+      document.getElementById('profile-phone').textContent = USER_ID;
+    }
+  }
+
+  async function checkNotifications() {
+    try {
+      var res  = await fetch('/api/notifications');
+      var data = await res.json();
+      if ((data.notifications || []).length > 0) {
+        document.getElementById('notif-dot').style.display = 'block';
+      }
+    } catch (_) {}
+  }
+
+  loadProfile();
+  checkNotifications();
+})();
+</script>
+</body>
+</html>

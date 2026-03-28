@@ -2,6 +2,7 @@
     {
         "id": "TBA-0001",
         "phone": "+251911223344",
+        "email": "kebede.alemu@tba.et",
         "name": "Kebede Alemu",
         "region": "Oromia",
         "kebele": "Jimma 02",
@@ -12,6 +13,7 @@
     {
         "id": "TBA-0002",
         "phone": "+251922334455",
+        "email": "almaz.tesfaye@tba.et",
         "name": "Almaz Tesfaye",
         "region": "Amhara",
         "kebele": "Bahir Dar 05",
@@ -22,6 +24,7 @@
     {
         "id": "TBA-0003",
         "phone": "+251933445566",
+        "email": "dawit.bekele@tba.et",
         "name": "Dawit Bekele",
         "region": "SNNPR",
         "kebele": "Hawassa 03",
@@ -32,6 +35,7 @@
     {
         "id": "TBA-0004",
         "phone": "+251944556677",
+        "email": "tigist.worku@tba.et",
         "name": "Tigist Worku",
         "region": "Tigray",
         "kebele": "Mekelle 01",
@@ -42,6 +46,7 @@
     {
         "id": "TBA-0005",
         "phone": "+251955667788",
+        "email": "abdi.mohammed@tba.et",
         "name": "Abdi Mohammed",
         "region": "Somali",
         "kebele": "Jijiga 04",
@@ -52,6 +57,7 @@
     {
         "id": "TBA-0006",
         "phone": "+251966778899",
+        "email": "hana.girma@tba.et",
         "name": "Hana Girma",
         "region": "Oromia",
         "kebele": "Adama 02",
@@ -62,6 +68,7 @@
     {
         "id": "TBA-0007",
         "phone": "+251977889900",
+        "email": "solomon.haile@tba.et",
         "name": "Solomon Haile",
         "region": "Amhara",
         "kebele": "Gondar 06",
@@ -72,6 +79,7 @@
     {
         "id": "TBA-0008",
         "phone": "+251911111111",
+        "email": "meron.tadesse@tba.et",
         "name": "Meron Tadesse",
         "region": "Addis Ababa",
         "kebele": "Bole 03",
@@ -82,6 +90,7 @@
     {
         "id": "TBA-0009",
         "phone": "+251922222222",
+        "email": "yonas.fikru@tba.et",
         "name": "Yonas Fikru",
         "region": "Oromia",
         "kebele": "Nekemte 01",
@@ -92,6 +101,7 @@
     {
         "id": "TBA-0010",
         "phone": "+251933333333",
+        "email": "fatuma.hassan@tba.et",
         "name": "Fatuma Hassan",
         "region": "Dire Dawa",
         "kebele": "Dire Dawa 02",
@@ -102,6 +112,7 @@
     {
         "id": "TBA-0011",
         "phone": "+251944444444",
+        "email": "biruk.desta@tba.et",
         "name": "Biruk Desta",
         "region": "SNNPR",
         "kebele": "Wolayita 01",
@@ -112,6 +123,7 @@
     {
         "id": "TBA-0012",
         "phone": "+251955555555",
+        "email": "selamawit.abebe@tba.et",
         "name": "Selamawit Abebe",
         "region": "Amhara",
         "kebele": "Dessie 03",
@@ -122,6 +134,7 @@
     {
         "id": "TBA-0013",
         "phone": "+251966666666",
+        "email": "tesfaye.lemma@tba.et",
         "name": "Tesfaye Lemma",
         "region": "Oromia",
         "kebele": "Shashemene 02",
@@ -132,6 +145,7 @@
     {
         "id": "TBA-0014",
         "phone": "+251977777777",
+        "email": "rahel.mengistu@tba.et",
         "name": "Rahel Mengistu",
         "region": "Addis Ababa",
         "kebele": "Kirkos 05",
@@ -142,6 +156,7 @@
     {
         "id": "TBA-0015",
         "phone": "+251988888888",
+        "email": "mulugeta.assefa@tba.et",
         "name": "Mulugeta Assefa",
         "region": "Tigray",
         "kebele": "Axum 01",
@@ -152,6 +167,7 @@
     {
         "id": "TBA-9901",
         "phone": "+251999000001",
+        "email": "unknown.agent@suspicious.net",
         "name": "Unknown Agent",
         "region": "Unknown",
         "verified": false,
@@ -161,6 +177,7 @@
     {
         "id": "TBA-9902",
         "phone": "+251999000002",
+        "email": "suspicious.caller@fraud.net",
         "name": "Suspicious Caller",
         "region": "Unknown",
         "verified": false,
@@ -170,6 +187,7 @@
     {
         "id": "TBA-9903",
         "phone": "+251999000003",
+        "email": "fake.agent@scam.net",
         "name": "Fake Agent",
         "region": "Addis Ababa",
         "verified": false,

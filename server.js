@@ -34,6 +34,15 @@ const circleStore = {};
   }
 })();
 
+// ─── In-memory history & notifications ───────────────────────────────────────
+
+const verifyHistory = [];
+
+function logHistory(entry) {
+  verifyHistory.unshift(entry);
+  if (verifyHistory.length > 100) verifyHistory.pop();
+}
+
 // ─── POST /api/verify ─────────────────────────────────────────────────────────
 
 app.post('/api/verify', (req, res) => {
@@ -54,6 +63,7 @@ app.post('/api/verify', (req, res) => {
     );
 
     if (!agent) {
+      logHistory({ query: phone || agentCode, badge: 'red', agentName: null, region: null, timestamp: new Date().toISOString() });
       return res.json({
         found: false,
         badge: 'red',
@@ -62,6 +72,7 @@ app.post('/api/verify', (req, res) => {
     }
 
     if (agent.verified) {
+      logHistory({ query: phone || agentCode, badge: 'green', agentName: agent.name, region: agent.region, timestamp: new Date().toISOString() });
       return res.json({
         found: true,
         badge: 'green',
@@ -75,6 +86,7 @@ app.post('/api/verify', (req, res) => {
       });
     }
 
+    logHistory({ query: phone || agentCode, badge: 'yellow', agentName: agent.name, region: agent.region, timestamp: new Date().toISOString() });
     return res.json({
       found: true,
       badge: 'yellow',
@@ -170,6 +182,89 @@ app.delete('/api/circle/:userId/:phone', (req, res) => {
   const updated = contacts.filter((c) => c.phone !== phone);
   circleStore[userId] = updated;
   res.json({ success: true, contacts: updated });
+});
+
+// ─── GET /api/history ─────────────────────────────────────────────────────────
+
+app.get('/api/history', (req, res) => {
+  res.json({ history: verifyHistory });
+});
+
+// ─── DELETE /api/history/clear ────────────────────────────────────────────────
+
+app.delete('/api/history/clear', (req, res) => {
+  verifyHistory.length = 0;
+  res.json({ success: true });
+});
+
+// ─── GET /api/notifications ───────────────────────────────────────────────────
+
+app.get('/api/notifications', (req, res) => {
+  const alerts = verifyHistory
+    .filter((e) => e.badge === 'yellow' || e.badge === 'red')
+    .slice(0, 20)
+    .map((e) => ({
+      ...e,
+      message:
+        e.badge === 'red'
+          ? `⚠️ Unregistered number checked: ${e.query}`
+          : `⚡ Low-trust agent checked: ${e.agentName || e.query}`,
+    }));
+  res.json({ notifications: alerts });
+});
+
+// ─── GET /api/search ──────────────────────────────────────────────────────────
+
+app.get('/api/search', (req, res) => {
+  const q = (req.query.q || '').toLowerCase().trim();
+  if (!q) return res.json({ results: [] });
+
+  const agents = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'data/agents.json'), 'utf-8')
+  );
+
+  const results = agents
+    .filter((a) =>
+      a.name.toLowerCase().includes(q) ||
+      a.region.toLowerCase().includes(q) ||
+      (a.kebele && a.kebele.toLowerCase().includes(q)) ||
+      a.id.toLowerCase().includes(q) ||
+      a.phone.includes(q)
+    )
+    .slice(0, 10)
+    .map((a) => ({
+      id: a.id,
+      name: a.name,
+      phone: a.phone,
+      region: a.region,
+      kebele: a.kebele,
+      trust_score: a.trust_score,
+      verified: a.verified,
+    }));
+
+  res.json({ results });
+});
+
+// ─── GET /api/profile/:userId ─────────────────────────────────────────────────
+
+app.get('/api/profile/:userId', (req, res) => {
+  const { userId } = req.params;
+  const users = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'data/users.json'), 'utf-8')
+  );
+  const user = users.find((u) => u.id === userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  const circle = circleStore[userId] ?? [];
+  const userHistory = verifyHistory.filter((e) => e.userId === userId);
+
+  res.json({
+    id: user.id,
+    name: user.name,
+    language: user.language,
+    circleCount: circle.length,
+    verifyCount: verifyHistory.length,
+  });
 });
 
 // ─── Start ────────────────────────────────────────────────────────────────────

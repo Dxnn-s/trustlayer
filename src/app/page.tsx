@@ -4,20 +4,118 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+const PHONE_DIGITS_REGEX = /^9\d{8}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+type RiskLevel = "low" | "medium" | "high";
+
+interface AIValidation {
+  valid: boolean;
+  confidence: number;
+  riskLevel: RiskLevel;
+  reason: string;
+  riskFlags: string[];
+}
+
+const RISK_COLORS: Record<RiskLevel, string> = {
+  low: "text-primary",
+  medium: "text-[#b45309]",
+  high: "text-error",
+};
+
+const RISK_BG: Record<RiskLevel, string> = {
+  low: "bg-secondary-container",
+  medium: "bg-[#fef3c7]",
+  high: "bg-error-container",
+};
+
+const RISK_ICON: Record<RiskLevel, string> = {
+  low: "verified",
+  medium: "warning",
+  high: "dangerous",
+};
+
 export default function VerifyPage() {
   const [activeTab, setActiveTab] = useState<"phone" | "email">("phone");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [fieldError, setFieldError] = useState("");
+  const [aiValidation, setAiValidation] = useState<AIValidation | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  function validateFormat(): boolean {
+    if (activeTab === "phone") {
+      const digits = phone.replace(/\s/g, "");
+      if (!digits) {
+        setFieldError("Please enter a phone number.");
+        return false;
+      }
+      if (!/^\d+$/.test(digits)) {
+        setFieldError("Phone number must contain digits only.");
+        return false;
+      }
+      if (!PHONE_DIGITS_REGEX.test(digits)) {
+        setFieldError("Must be 9 digits starting with 9 (e.g. 912 345 678).");
+        return false;
+      }
+    } else {
+      const trimmed = email.trim();
+      if (!trimmed) {
+        setFieldError("Please enter an email address.");
+        return false;
+      }
+      if (!EMAIL_REGEX.test(trimmed)) {
+        setFieldError("Enter a valid email address (e.g. name@example.com).");
+        return false;
+      }
+    }
+    setFieldError("");
+    return true;
+  }
+
+  async function runAIValidation() {
+    if (!validateFormat()) return;
+    setAiValidation(null);
+    setAiLoading(true);
+    try {
+      const body =
+        activeTab === "phone"
+          ? { phone: "+251" + phone.replace(/\s/g, "") }
+          : { email: email.trim().toLowerCase() };
+
+      const res = await fetch("/api/validate-identity", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) return; // silently skip if AI service is down
+      const data: AIValidation = await res.json();
+      setAiValidation(data);
+    } finally {
+      setAiLoading(false);
+    }
+  }
+
   async function handleVerify() {
+    if (!validateFormat()) return;
+
+    // Block if AI already flagged high risk
+    if (aiValidation?.riskLevel === "high" && !aiValidation.valid) {
+      setFieldError(
+        "This input was flagged as high risk. Please use a verified contact."
+      );
+      return;
+    }
+
     setLoading(true);
     try {
       const body =
         activeTab === "phone"
-          ? { phone: "+251" + phone }
-          : { agentCode: email };
+          ? { phone: "+251" + phone.replace(/\s/g, "") }
+          : { email: email.trim().toLowerCase() };
 
       const res = await fetch("/api/verify", {
         method: "POST",
@@ -25,6 +123,11 @@ export default function VerifyPage() {
         body: JSON.stringify(body),
       });
       const data = await res.json();
+
+      if (!res.ok && data.error) {
+        setFieldError(data.error);
+        return;
+      }
 
       if (data.badge === "green" || data.badge === "yellow") {
         const q = new URLSearchParams({
@@ -43,6 +146,36 @@ export default function VerifyPage() {
       setLoading(false);
     }
   }
+
+  function handleTabChange(tab: "phone" | "email") {
+    setActiveTab(tab);
+    setFieldError("");
+    setAiValidation(null);
+  }
+
+  function handlePhoneChange(value: string) {
+    const filtered = value.replace(/[^\d\s]/g, "");
+    setPhone(filtered);
+    if (fieldError) setFieldError("");
+    if (aiValidation) setAiValidation(null);
+  }
+
+  function handleEmailChange(value: string) {
+    setEmail(value);
+    if (fieldError) setFieldError("");
+    if (aiValidation) setAiValidation(null);
+  }
+
+  const inputHasError = !!fieldError;
+  const inputRing = aiValidation
+    ? aiValidation.riskLevel === "high"
+      ? "ring-error"
+      : aiValidation.riskLevel === "medium"
+      ? "ring-[#d97706]"
+      : "ring-primary"
+    : inputHasError
+    ? "ring-error"
+    : "ring-transparent focus-within:ring-primary";
 
   return (
     <div className="bg-background text-on-surface min-h-screen flex flex-col">
@@ -70,14 +203,14 @@ export default function VerifyPage() {
           </h1>
           <p className="font-body text-on-surface-variant leading-relaxed">
             Secure verification for the Ethiopian digital economy. Input the
-            phone number to check registration status.
+            phone number or email to check registration status.
           </p>
         </div>
 
-        <div className="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-8 border-none">
-          <div className="flex border-b border-outline-variant mb-6">
+        <div className="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-6 border-none">
+          <div className="flex border-b border-outline-variant">
             <button
-              onClick={() => setActiveTab("phone")}
+              onClick={() => handleTabChange("phone")}
               className={`flex-1 py-3 text-sm font-bold font-headline border-b-2 transition-colors ${
                 activeTab === "phone"
                   ? "border-primary text-primary"
@@ -87,7 +220,7 @@ export default function VerifyPage() {
               Phone Number
             </button>
             <button
-              onClick={() => setActiveTab("email")}
+              onClick={() => handleTabChange("email")}
               className={`flex-1 py-3 text-sm font-bold font-headline border-b-2 transition-colors ${
                 activeTab === "email"
                   ? "border-primary text-primary"
@@ -98,13 +231,15 @@ export default function VerifyPage() {
             </button>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {activeTab === "phone" && (
               <div>
                 <label className="font-label font-bold text-xs uppercase tracking-widest text-on-surface-variant block mb-3">
                   Phone Number
                 </label>
-                <div className="flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 ring-transparent focus-within:ring-primary transition-all">
+                <div
+                  className={`flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 transition-all ${inputRing}`}
+                >
                   <div className="flex items-center gap-2 border-r border-outline-variant pr-4 mr-4">
                     <img
                       alt="Ethiopia Flag"
@@ -117,14 +252,16 @@ export default function VerifyPage() {
                   </div>
                   <input
                     className="bg-transparent border-none focus:ring-0 w-full font-headline font-bold text-xl p-0 placeholder:text-outline-variant"
-                    maxLength={9}
+                    maxLength={11}
                     placeholder="912 345 678"
                     type="tel"
+                    inputMode="numeric"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => handlePhoneChange(e.target.value)}
+                    onBlur={runAIValidation}
                   />
                 </div>
-                <p className="text-xs text-on-surface-variant font-medium mt-3">
+                <p className="text-xs text-on-surface-variant font-medium mt-2">
                   Use the 9-digit mobile number registered with Ethio Telecom or
                   Safaricom.
                 </p>
@@ -136,7 +273,9 @@ export default function VerifyPage() {
                 <label className="font-label font-bold text-xs uppercase tracking-widest text-on-surface-variant block mb-3">
                   Email Address
                 </label>
-                <div className="flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 ring-transparent focus-within:ring-primary transition-all">
+                <div
+                  className={`flex items-center bg-surface-container-high rounded-xl px-4 py-4 ring-2 transition-all ${inputRing}`}
+                >
                   <span className="material-symbols-outlined text-on-surface-variant mr-3">
                     mail
                   </span>
@@ -144,25 +283,91 @@ export default function VerifyPage() {
                     className="bg-transparent border-none focus:ring-0 w-full font-headline font-bold text-lg p-0 placeholder:text-outline-variant"
                     placeholder="name@example.com"
                     type="email"
+                    autoComplete="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => handleEmailChange(e.target.value)}
+                    onBlur={runAIValidation}
                   />
                 </div>
-                <p className="text-xs text-on-surface-variant font-medium mt-3">
+                <p className="text-xs text-on-surface-variant font-medium mt-2">
                   Enter the email address linked to your digital identity
                   profile.
                 </p>
+              </div>
+            )}
+
+            {/* Format error */}
+            {fieldError && (
+              <div className="flex items-center gap-2 text-error text-sm font-medium">
+                <span className="material-symbols-outlined text-base">error</span>
+                {fieldError}
+              </div>
+            )}
+
+            {/* AI validation loading */}
+            {aiLoading && (
+              <div className="flex items-center gap-2 text-on-surface-variant text-sm font-medium animate-pulse">
+                <span className="material-symbols-outlined text-base">
+                  psychology
+                </span>
+                Analyzing with AI…
+              </div>
+            )}
+
+            {/* AI validation result */}
+            {aiValidation && !aiLoading && (
+              <div
+                className={`rounded-xl p-4 flex flex-col gap-2 ${RISK_BG[aiValidation.riskLevel]}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div
+                    className={`flex items-center gap-2 font-headline font-bold text-sm ${RISK_COLORS[aiValidation.riskLevel]}`}
+                  >
+                    <span
+                      className="material-symbols-outlined text-base"
+                      style={{ fontVariationSettings: "'FILL' 1" }}
+                    >
+                      {RISK_ICON[aiValidation.riskLevel]}
+                    </span>
+                    {aiValidation.riskLevel === "low"
+                      ? "AI: Low Risk"
+                      : aiValidation.riskLevel === "medium"
+                      ? "AI: Medium Risk"
+                      : "AI: High Risk"}
+                  </div>
+                  <span className="text-xs font-medium text-on-surface-variant">
+                    {Math.round(aiValidation.confidence * 100)}% confidence
+                  </span>
+                </div>
+                <p className="text-xs text-on-surface leading-relaxed">
+                  {aiValidation.reason}
+                </p>
+                {aiValidation.riskFlags.length > 0 && (
+                  <ul className="mt-1 space-y-1">
+                    {aiValidation.riskFlags.map((flag, i) => (
+                      <li
+                        key={i}
+                        className={`text-xs flex items-start gap-1 ${RISK_COLORS[aiValidation.riskLevel]}`}
+                      >
+                        <span className="material-symbols-outlined text-sm mt-0.5">
+                          flag
+                        </span>
+                        {flag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             )}
           </div>
 
           <button
             onClick={handleVerify}
-            disabled={loading}
+            disabled={loading || aiLoading}
             className="bg-primary-container text-on-primary-container h-14 w-full rounded-xl flex items-center justify-center gap-2 font-headline font-bold text-lg active:scale-95 transition-transform hover:opacity-90 disabled:opacity-60"
           >
             <span className="material-symbols-outlined">verified</span>
-            {loading ? "Checking..." : "Check Identity"}
+            {loading ? "Checking…" : "Check Identity"}
           </button>
         </div>
 
@@ -184,11 +389,11 @@ export default function VerifyPage() {
               className="material-symbols-outlined text-primary"
               style={{ fontVariationSettings: "'FILL' 1" }}
             >
-              speed
+              psychology
             </span>
-            <h3 className="font-headline font-bold text-sm">Instant</h3>
+            <h3 className="font-headline font-bold text-sm">AI-Powered</h3>
             <p className="text-xs text-on-surface-variant">
-              Real-time sync with national registries.
+              Real-time fraud detection with Claude AI.
             </p>
           </div>
         </div>
