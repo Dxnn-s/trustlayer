@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TrustLayer - Not Verified</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#8bd6b6",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#ffb5ad",
+              "on-surface-variant": "#3f4944",
+              "outline-variant": "#bec9c2",
+              "inverse-on-surface": "#f3f0f4",
+              "on-secondary-fixed": "#052016",
+              "on-primary-container": "#8bd6b7",
+              "on-background": "#1b1b1e",
+              "surface-variant": "#e4e1e5",
+              "surface": "#fbf8fc",
+              "surface-container-high": "#eae7eb",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#002116",
+              "on-tertiary": "#ffffff",
+              "secondary": "#496458",
+              "secondary-fixed-dim": "#afcdbe",
+              "tertiary": "#7e020b",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "surface-container-low": "#f5f3f6",
+              "surface-container-highest": "#e4e1e5",
+              "secondary-container": "#c8e7d7",
+              "outline": "#6f7973",
+              "on-primary-fixed-variant": "#00513b",
+              "primary-fixed": "#a6f2d1",
+              "tertiary-fixed-dim": "#ffb4ac",
+              "on-tertiary-fixed": "#410002",
+              "tertiary-fixed": "#ffdad6",
+              "on-surface": "#1b1b1e",
+              "on-error": "#ffffff",
+              "surface-bright": "#fbf8fc",
+              "background": "#fbf8fc",
+              "tertiary-container": "#a0211f",
+              "inverse-surface": "#303033",
+              "primary": "#004532",
+              "primary-fixed-dim": "#8bd6b6",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              "primary-container": "#065f46",
+              "on-secondary-container": "#4d685c",
+              "surface-tint": "#1b6b51",
+              "on-secondary-fixed-variant": "#324c41",
+              "secondary-fixed": "#cbe9da",
+              "on-tertiary-fixed-variant": "#8e1214",
+              "surface-container": "#f0edf1",
+              "surface-dim": "#dcd9dd"
+            },
+            fontFamily: {
+              "headline": ["Lexend"],
+              "body": ["Lexend"],
+              "label": ["Lexend"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Lexend', sans-serif; min-height: max(884px, 100dvh); }
+    .bg-tertiary-gradient { background: linear-gradient(145deg, #7e020b 0%, #a0211f 100%); }
+    .glass-effect { background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  </style>
+</head>
+<body class="bg-tertiary-container font-body text-on-tertiary min-h-screen flex flex-col">
+<header class="fixed top-0 w-full z-50 bg-gradient-to-r from-emerald-900 to-emerald-800 shadow-sm flex items-center justify-between px-6 h-16">
+<div class="text-emerald-50 font-lexend tracking-tight font-bold text-xl flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+TrustLayer
+</div>
+<div class="flex gap-4">
+<button class="text-emerald-200/70 hover:bg-emerald-800/50 transition-colors p-2 rounded-xl active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-6 pt-24 pb-32 max-w-lg mx-auto w-full">
+<div class="relative mb-12 flex flex-col items-center">
+<div class="absolute -z-10 w-64 h-64 bg-tertiary opacity-30 rounded-full blur-3xl -top-12 -left-12"></div>
+<div class="w-40 h-40 rounded-xl bg-white/10 flex items-center justify-center glass-effect border border-white/10">
+<span class="material-symbols-outlined text-[120px] text-white font-light" style="font-variation-settings: 'wght' 200;">close</span>
+</div>
+<div class="mt-10 text-center">
+<h1 class="font-headline font-extrabold text-4xl tracking-tighter text-white mb-3">WARNING: Not verified</h1>
+<p class="text-on-tertiary-container font-medium text-lg leading-relaxed max-w-xs mx-auto">
+  This person is not in the verified agent registry
+</p>
+</div>
+</div>
+<div class="w-full space-y-4">
+<button class="w-full glass-effect rounded-xl p-5 flex items-center justify-between border border-white/5 active:scale-95 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="volume_up">volume_up</span>
+</div>
+<span class="font-semibold tracking-wide">Tap to hear warning</span>
+</div>
+<span class="material-symbols-outlined text-white/50" data-icon="play_arrow">play_arrow</span>
+</button>
+<div class="w-full grid grid-cols-2 gap-4">
+<div class="bg-tertiary p-5 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-on-tertiary-container mb-2" data-icon="info">info</span>
+<p class="text-[11px] uppercase tracking-widest text-on-tertiary-container mb-1">Status</p>
+<p class="font-bold text-white">Unregistered</p>
+</div>
+<div class="bg-tertiary p-5 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-on-tertiary-container mb-2" data-icon="gpp_maybe">gpp_maybe</span>
+<p class="text-[11px] uppercase tracking-widest text-on-tertiary-container mb-1">Risk Level</p>
+<p class="font-bold text-white">Critical</p>
+</div>
+</div>
+<div class="pt-6 space-y-3">
+<button class="w-full bg-white text-tertiary-container py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="phone_in_talk">phone_in_talk</span>
+Call trusted contact
+</button>
+<button class="w-full bg-transparent text-white border-2 border-white/20 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+Check another person
+</button>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-8 left-0 w-full px-6 pointer-events-none">
+<div class="max-w-lg mx-auto flex justify-center">
+<div class="glass-effect px-4 py-2 rounded-full border border-white/10">
+<p class="text-[10px] text-white/60 tracking-widest uppercase font-bold">Secure Session Active</p>
+</div>
+</div>
+</footer>
+<script>
+(function () {
+  // Audio — "Tap to hear warning"
+  var audioBtn = document.querySelector('button.glass-effect');
+  if (audioBtn) audioBtn.addEventListener('click', function () {
+    new Audio('/audio/warning-am.mp3').play().catch(function(){});
+  });
+
+  // "Call trusted contact"
+  var callBtn = document.querySelector('button.bg-white');
+  if (callBtn) callBtn.addEventListener('click', function () {
+    window.location.href = '/pages/circle.html';
+  });
+
+  // "Check another person"
+  var checkBtn = document.querySelector('button.bg-transparent');
+  if (checkBtn) checkBtn.addEventListener('click', function () {
+    window.location.href = '/pages/verify.html';
+  });
+})();
+</script>
+</body></html>

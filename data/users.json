@@ -1,21 +1,27 @@
 [
-    {
-        "id": "+251912345678",
-        "name": "Abebe",
-        "language": "am",
-        "trusted_circle": [
-            "+251911111111",
-            "+251922222222",
-            "+251933333333"
-        ]
-    },
-    {
-        "id": "+251987654321",
-        "name": "Chaltu",
-        "language": "om",
-        "trusted_circle": [
-            "+251944444444",
-            "+251955555555"
-        ]
-    }
+  {
+    "id": "+251912345678",
+    "name": "Abebe",
+    "language": "am",
+    "trusted_circle": [
+      { "phone": "+251911111111", "name": "Meron" },
+      { "phone": "+251922222222", "name": "Yonas" },
+      { "phone": "+251933333333", "name": "Fatuma" }
+    ]
+  },
+  {
+    "id": "+251987654321",
+    "name": "Chaltu",
+    "language": "om",
+    "trusted_circle": [
+      { "phone": "+251944444444", "name": "Biruk" },
+      { "phone": "+251955555555", "name": "Selamawit" }
+    ]
+  },
+  {
+    "id": "+251911223344",
+    "name": "Kebede",
+    "language": "am",
+    "trusted_circle": []
+  }
 ]

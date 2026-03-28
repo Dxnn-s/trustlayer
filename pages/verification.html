@@ -1,0 +1,216 @@
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#002113",
+              "tertiary-container": "#fc7c78",
+              "secondary-container": "#b7ebce",
+              "surface-container-high": "#dee9fc",
+              "inverse-primary": "#4edea3",
+              "tertiary": "#a43a3a",
+              "primary": "#006c49",
+              "secondary-fixed": "#baeed1",
+              "surface-variant": "#d9e3f6",
+              "outline": "#6c7a71",
+              "on-error-container": "#93000a",
+              "surface": "#f8f9ff",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#002113",
+              "on-tertiary-fixed-variant": "#842225",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#3c6c54",
+              "inverse-on-surface": "#eaf1ff",
+              "surface-bright": "#f8f9ff",
+              "tertiary-fixed": "#ffdad7",
+              "tertiary-fixed-dim": "#ffb3af",
+              "surface-dim": "#d0dbed",
+              "on-primary-container": "#00422b",
+              "surface-tint": "#006c49",
+              "secondary": "#376850",
+              "error": "#ba1a1a",
+              "on-background": "#121c2a",
+              "secondary-fixed-dim": "#9ed2b5",
+              "on-primary-fixed-variant": "#005236",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "inverse-surface": "#27313f",
+              "primary-fixed-dim": "#4edea3",
+              "on-tertiary-container": "#711419",
+              "primary-container": "#10b981",
+              "outline-variant": "#bbcabf",
+              "on-secondary-fixed-variant": "#1e4f3a",
+              "on-surface-variant": "#3c4a42",
+              "surface-container-highest": "#d9e3f6",
+              "surface-container-low": "#eff4ff",
+              "error-container": "#ffdad6",
+              "on-surface": "#121c2a",
+              "on-tertiary-fixed": "#410005",
+              "background": "#f8f9ff",
+              "surface-container": "#e6eeff",
+              "primary-fixed": "#6ffbbe"
+            },
+            fontFamily: {
+              "headline": ["Lexend"],
+              "body": ["Public Sans"],
+              "label": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Public Sans', sans-serif;
+      }
+      h1, h2, h3, .font-lexend {
+        font-family: 'Lexend', sans-serif;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+</head>
+<body class="bg-primary-container text-white min-h-screen flex flex-col items-center overflow-x-hidden">
+<header class="fixed top-0 w-full z-50 flex items-center px-4 h-16 bg-emerald-600 dark:bg-emerald-900">
+<button class="transition-transform duration-200 active:scale-95 flex items-center justify-center w-10 h-10 rounded-full hover:bg-emerald-700/50">
+<span class="material-symbols-outlined text-white" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="ml-4 font-lexend font-bold text-lg text-white">Verification</h1>
+</header>
+<main class="flex-grow w-full max-w-[375px] pt-24 pb-32 px-6 flex flex-col items-center justify-center text-center">
+<div class="mb-10 animate-fade-in">
+<span class="material-symbols-outlined text-[120px] leading-none" data-icon="check_circle" style="font-variation-settings: 'FILL' 1, 'wght' 700;">check_circle</span>
+</div>
+<div class="space-y-2 mb-10">
+<h2 class="text-4xl font-lexend font-extrabold tracking-tight">Kebede Alemu</h2>
+<p class="text-lg font-body font-medium text-emerald-100 opacity-90">Oromia • Jimma 02</p>
+</div>
+<div class="flex flex-col items-center gap-3 mb-12">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-3xl" data-icon="circle" style="font-variation-settings: 'FILL' 1;">circle</span>
+<span class="material-symbols-outlined text-3xl" data-icon="circle" style="font-variation-settings: 'FILL' 1;">circle</span>
+<span class="material-symbols-outlined text-3xl" data-icon="circle" style="font-variation-settings: 'FILL' 1;">circle</span>
+<span class="material-symbols-outlined text-3xl" data-icon="circle" style="font-variation-settings: 'FILL' 1;">circle</span>
+<span class="material-symbols-outlined text-3xl" data-icon="circle" style="font-variation-settings: 'FILL' 0.75;">circle</span>
+</div>
+<p class="font-lexend font-bold text-sm tracking-widest uppercase opacity-80">Verified Score 4.75 / 5</p>
+</div>
+<div class="flex flex-col items-center gap-4 mb-16">
+<button class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-primary-container transition-all duration-200 active:scale-90 shadow-lg">
+<span class="material-symbols-outlined text-5xl" data-icon="volume_up" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+</button>
+<p class="font-lexend font-bold text-white text-lg">Tap to hear verification</p>
+</div>
+<div class="w-full bg-emerald-700/30 rounded-full p-4 flex items-center gap-4 mb-8">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white/50 flex-shrink-0">
+<img class="w-full h-full object-cover" alt="Portrait of verified agent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZTTLZ4I8KfAjiJLD8fElS8HElmz1SaRHfgkyL-ZcSk3M4_8_0tOwHpo1v5hk2v08Gx6THm0Mm9H82Uqqe4Qb-wkDoAcNacZFx91JPa-F2mi58Xe6If-ez57T-Ek4w8R1FkkQM6xmspib4afanSlFpVPAKBeNLvo4_ZR0Bd_GLkPUqFhssn47UA67abCeCmVizYTiQeC3MAs_0pTLBs35Tl5bN1-fuUk0w06x3ntdqyDV7fYL1oCnHyUXRO4Pv_lOT8TTp3DyZal0"/>
+</div>
+<div class="text-left">
+<p class="font-label text-xs font-bold uppercase tracking-wider text-emerald-100">ID NUMBER</p>
+<p class="font-lexend font-bold text-lg">ET-092-3341</p>
+</div>
+</div>
+<button class="w-full py-5 border-2 border-white rounded-xl font-lexend font-bold text-white text-lg transition-colors hover:bg-white/10 active:scale-95">
+  Check another person
+</button>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-white dark:bg-gray-900">
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-lexend text-[10px] font-medium mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-100 rounded-xl p-2 transition-all duration-200 ease-in-out active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-lexend text-[10px] font-medium mt-1">Profile</span>
+</a>
+</nav>
+<script>
+(function () {
+  var p = new URLSearchParams(window.location.search);
+  var name    = p.get('name')    || 'Kebede Alemu';
+  var region  = p.get('region')  || 'Oromia';
+  var kebele  = p.get('kebele')  || 'Jimma 02';
+  var id      = p.get('id')      || 'TBA-0001';
+  var score   = parseFloat(p.get('score') || '4.75');
+  var warning = p.get('warning');
+
+  // Name
+  var nameEl = document.querySelector('h2');
+  if (nameEl) nameEl.textContent = name;
+
+  // Region
+  var regionEl = document.querySelector('p.text-emerald-100.opacity-90');
+  if (regionEl) regionEl.textContent = [region, kebele].filter(Boolean).join(' \u2022 ');
+
+  // ID number
+  var idEl = document.querySelector('p.font-lexend.font-bold.text-lg');
+  if (idEl) idEl.textContent = id;
+
+  // Score label
+  var scoreLabel = document.querySelector('p.font-lexend.font-bold.text-sm.tracking-widest');
+  if (scoreLabel) scoreLabel.textContent = 'Verified Score ' + score.toFixed(2) + ' / 5';
+
+  // Score dots
+  var dots = document.querySelectorAll('.flex.items-center.gap-1 .material-symbols-outlined');
+  var full = Math.floor(score);
+  dots.forEach(function (dot, i) {
+    dot.style.fontVariationSettings = i < full
+      ? "'FILL' 1"
+      : (i === full && (score - full) > 0 ? "'FILL' 0.5" : "'FILL' 0");
+  });
+
+  // Warning banner
+  if (warning) {
+    var banner = document.createElement('div');
+    banner.style.cssText = 'background:rgba(234,179,8,0.25);border:1px solid rgba(253,224,71,0.5);border-radius:0.5rem;padding:0.6rem 1rem;color:#fef9c3;font-size:0.85rem;font-weight:600;margin-bottom:1rem;width:100%;text-align:center';
+    banner.textContent = warning;
+    var main = document.querySelector('main');
+    if (main) main.insertBefore(banner, main.firstChild);
+  }
+
+  // Audio button
+  var audioBtn = document.querySelector('button.w-24.h-24');
+  if (audioBtn) {
+    audioBtn.addEventListener('click', function () {
+      new Audio('/audio/verified-am.mp3').play().catch(function(){});
+    });
+  }
+
+  // Back button → verify page
+  var backBtn = document.querySelector('header button');
+  if (backBtn) backBtn.addEventListener('click', function () {
+    window.location.href = '/pages/verify.html';
+  });
+
+  // "Check another" button
+  var checkAnotherBtn = document.querySelector('button.w-full.py-5');
+  if (checkAnotherBtn) checkAnotherBtn.addEventListener('click', function () {
+    window.location.href = '/pages/verify.html';
+  });
+})();
+</script>
+</body></html>
