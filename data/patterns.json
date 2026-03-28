@@ -1,0 +1,276 @@
+[
+    {
+        "id": "PAT-001",
+        "type": "urgency",
+        "keywords": {
+            "en": [
+                "urgent",
+                "immediately",
+                "now",
+                "hurry",
+                "fast",
+                "expire",
+                "deadline",
+                "emergency",
+                "quick",
+                "act now"
+            ],
+            "am": [
+                "aschekay",
+                "ahun",
+                "befetnet",
+                "kzih belay",
+                "tolo",
+                "askelew"
+            ],
+            "om": [
+                "hatattamaa",
+                "ammaa",
+                "ariifataa",
+                "dafii"
+            ]
+        },
+        "severity": 2,
+        "description": {
+            "en": "Urgency language detected — scammers create pressure to act fast",
+            "am": "Ye aschekay quanqua tegenegnual",
+            "om": "Dubbiin ariifannaa argame"
+        }
+    },
+    {
+        "id": "PAT-002",
+        "type": "repeat_ask",
+        "keywords": {
+            "en": [
+                "pin",
+                "password",
+                "code",
+                "otp",
+                "verify",
+                "confirm",
+                "enter again",
+                "re-enter",
+                "one more time"
+            ],
+            "am": [
+                "misterawi",
+                "yemistir quter",
+                "pin",
+                "password",
+                "mels yagbu"
+            ],
+            "om": [
+                "icciitii",
+                "jecha_darbii",
+                "pin",
+                "koodii"
+            ]
+        },
+        "severity": 3,
+        "description": {
+            "en": "PIN or password requested — never share your PIN with anyone",
+            "am": "PIN eyyeteyeqe new — lemanignawm PIN ayisetu",
+            "om": "PIN gaafatame — PIN eenyuufuu hin qoodiin"
+        }
+    },
+    {
+        "id": "PAT-003",
+        "type": "impersonation",
+        "keywords": {
+            "en": [
+                "bank",
+                "telebirr",
+                "ethio telecom",
+                "official",
+                "government",
+                "support",
+                "customer service",
+                "headquarters"
+            ],
+            "am": [
+                "bank",
+                "telebirr",
+                "yemengist",
+                "dembegna",
+                "dereja",
+                "mederder"
+            ],
+            "om": [
+                "baankii",
+                "telebirr",
+                "mootummaa",
+                "tajaajila",
+                "gargaarsa"
+            ]
+        },
+        "severity": 2,
+        "description": {
+            "en": "Official impersonation detected — real officials never ask for PIN by phone",
+            "am": "Yemengist serategnoch bemisxir PIN ayiyequm",
+            "om": "Hojjettoonni mootummaa bilbilaan PIN hin gaafatan"
+        }
+    },
+    {
+        "id": "PAT-004",
+        "type": "outside_circle",
+        "keywords": {
+            "en": [
+                "unknown",
+                "stranger",
+                "new contact",
+                "first time"
+            ],
+            "am": [
+                "aywaqm",
+                "andegna gize",
+                "aytalewm"
+            ],
+            "om": [
+                "hinbeeku",
+                "nama haaraa",
+                "yeroo jalqabaa"
+            ]
+        },
+        "severity": 1,
+        "description": {
+            "en": "This person is not in your trusted circle",
+            "am": "Yih sew beyiamanubet circle wist aydelem",
+            "om": "Namni kun marsaa amantoota keessan keessa miti"
+        }
+    },
+    {
+        "id": "PAT-005",
+        "type": "urgency",
+        "keywords": {
+            "en": [
+                "account blocked",
+                "suspended",
+                "frozen",
+                "locked",
+                "deactivated",
+                "will be closed"
+            ],
+            "am": [
+                "account tezgual",
+                "tekeflual",
+                "account yizegal"
+            ],
+            "om": [
+                "herregni cufamee",
+                "dhaabbatee",
+                "cufamaa"
+            ]
+        },
+        "severity": 3,
+        "description": {
+            "en": "Account threat detected — banks never threaten closure by phone",
+            "am": "Bankoch bemisxir account ayzegum",
+            "om": "Baankiin bilbilaan herrega hin cufu"
+        }
+    },
+    {
+        "id": "PAT-006",
+        "type": "impersonation",
+        "keywords": {
+            "en": [
+                "prize",
+                "won",
+                "lottery",
+                "reward",
+                "congratulations",
+                "selected",
+                "winner"
+            ],
+            "am": [
+                "shilmat",
+                "ashenefwal",
+                "lotari",
+                "enqwan des alot"
+            ],
+            "om": [
+                "badhaasa",
+                "moo'atee",
+                "lotarii",
+                "baga gammadde"
+            ]
+        },
+        "severity": 2,
+        "description": {
+            "en": "Prize scam detected — you did not win a lottery you didn’t enter",
+            "am": "Yalagabbubet lotari anesham",
+            "om": "Lotarii hin seenne hinmoone"
+        }
+    },
+    {
+        "id": "PAT-007",
+        "type": "repeat_ask",
+        "keywords": {
+            "en": [
+                "send money",
+                "transfer",
+                "pay",
+                "refund",
+                "fee",
+                "tax",
+                "processing",
+                "clearance"
+            ],
+            "am": [
+                "genzeb yilafu",
+                "transfer",
+                "yikfelu",
+                "gibir",
+                "mels"
+            ],
+            "om": [
+                "maallaqa ergi",
+                "dabarsii",
+                "kafaltii",
+                "gibiraa"
+            ]
+        },
+        "severity": 2,
+        "description": {
+            "en": "Payment request detected — verify the recipient before sending",
+            "am": "Kemekfel befit teqebalun yareggegtu",
+            "om": "Nama fudhatu mirkaneeffadhaa otoo hin ergiin"
+        }
+    },
+    {
+        "id": "PAT-008",
+        "type": "impersonation",
+        "keywords": {
+            "en": [
+                "dial",
+                "ussd",
+                "press",
+                "star",
+                "hash",
+                "*",
+                "#",
+                "activation",
+                "code"
+            ],
+            "am": [
+                "yidewlu",
+                "yijemru",
+                "USSD",
+                "code",
+                "yitqemu"
+            ],
+            "om": [
+                "bilbilaa",
+                "ussd",
+                "dhiibaa",
+                "koodii",
+                "jalqabsiisaa"
+            ]
+        },
+        "severity": 3,
+        "description": {
+            "en": "USSD code request detected — never dial codes given by strangers",
+            "am": "Kemayawquachu sew yetesetutn code ayidewlu",
+            "om": "Koodii namni hinbeekne isiniif kenne hin bilbiliin"
+        }
+    }
+]

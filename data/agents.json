@@ -1,0 +1,197 @@
+[
+    {
+        "id": "TBA-0001",
+        "phone": "+251911223344",
+        "name": "Kebede Alemu",
+        "region": "Oromia",
+        "kebele": "Jimma 02",
+        "verified": true,
+        "trust_score": 0.95,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0002",
+        "phone": "+251922334455",
+        "name": "Almaz Tesfaye",
+        "region": "Amhara",
+        "kebele": "Bahir Dar 05",
+        "verified": true,
+        "trust_score": 0.92,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0003",
+        "phone": "+251933445566",
+        "name": "Dawit Bekele",
+        "region": "SNNPR",
+        "kebele": "Hawassa 03",
+        "verified": true,
+        "trust_score": 0.88,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0004",
+        "phone": "+251944556677",
+        "name": "Tigist Worku",
+        "region": "Tigray",
+        "kebele": "Mekelle 01",
+        "verified": true,
+        "trust_score": 0.97,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0005",
+        "phone": "+251955667788",
+        "name": "Abdi Mohammed",
+        "region": "Somali",
+        "kebele": "Jijiga 04",
+        "verified": true,
+        "trust_score": 0.91,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0006",
+        "phone": "+251966778899",
+        "name": "Hana Girma",
+        "region": "Oromia",
+        "kebele": "Adama 02",
+        "verified": true,
+        "trust_score": 0.89,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0007",
+        "phone": "+251977889900",
+        "name": "Solomon Haile",
+        "region": "Amhara",
+        "kebele": "Gondar 06",
+        "verified": true,
+        "trust_score": 0.94,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0008",
+        "phone": "+251911111111",
+        "name": "Meron Tadesse",
+        "region": "Addis Ababa",
+        "kebele": "Bole 03",
+        "verified": true,
+        "trust_score": 0.96,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0009",
+        "phone": "+251922222222",
+        "name": "Yonas Fikru",
+        "region": "Oromia",
+        "kebele": "Nekemte 01",
+        "verified": true,
+        "trust_score": 0.87,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0010",
+        "phone": "+251933333333",
+        "name": "Fatuma Hassan",
+        "region": "Dire Dawa",
+        "kebele": "Dire Dawa 02",
+        "verified": true,
+        "trust_score": 0.93,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0011",
+        "phone": "+251944444444",
+        "name": "Biruk Desta",
+        "region": "SNNPR",
+        "kebele": "Wolayita 01",
+        "verified": true,
+        "trust_score": 0.90,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0012",
+        "phone": "+251955555555",
+        "name": "Selamawit Abebe",
+        "region": "Amhara",
+        "kebele": "Dessie 03",
+        "verified": true,
+        "trust_score": 0.86,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0013",
+        "phone": "+251966666666",
+        "name": "Tesfaye Lemma",
+        "region": "Oromia",
+        "kebele": "Shashemene 02",
+        "verified": true,
+        "trust_score": 0.91,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0014",
+        "phone": "+251977777777",
+        "name": "Rahel Mengistu",
+        "region": "Addis Ababa",
+        "kebele": "Kirkos 05",
+        "verified": true,
+        "trust_score": 0.98,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-0015",
+        "phone": "+251988888888",
+        "name": "Mulugeta Assefa",
+        "region": "Tigray",
+        "kebele": "Axum 01",
+        "verified": true,
+        "trust_score": 0.85,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-9901",
+        "phone": "+251999000001",
+        "name": "Unknown Agent",
+        "region": "Unknown",
+        "verified": false,
+        "trust_score": 0.12,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-9902",
+        "phone": "+251999000002",
+        "name": "Suspicious Caller",
+        "region": "Unknown",
+        "verified": false,
+        "trust_score": 0.08,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-9903",
+        "phone": "+251999000003",
+        "name": "Fake Agent",
+        "region": "Addis Ababa",
+        "verified": false,
+        "trust_score": 0.15,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-9904",
+        "phone": "+251999000004",
+        "name": "Unregistered",
+        "region": "Oromia",
+        "verified": false,
+        "trust_score": 0.05,
+        "last_synced": "2025-03-28T08:00:00Z"
+    },
+    {
+        "id": "TBA-9905",
+        "phone": "+251999000005",
+        "name": "Blocked Account",
+        "region": "Somali",
+        "verified": false,
+        "trust_score": 0.0,
+        "last_synced": "2025-03-28T08:00:00Z"
+    }
+]
